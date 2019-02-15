@@ -1,0 +1,454 @@
+ES6/ES2015  - ECMAScripts
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Transpilers to compile ES6 to ES5 are
+	- Babel
+	- Traceur
+	- Closure
+	
+What is New in ES6
+
+- let and const declaration
+- Destructuring Assignment
+- Classes and Inheritance
+- Template Strings
+- String function
+- Math & Number feature
+- New Data Structure
+- Iterators
+- Generators
+- Promises & Asynchronous Data
+- Arrow Function
+
+- Babel is a javascript compiler/transpiler
+
+Requirements
+
+- Nodejs
+- Posh-git  - terminal - right click folder and select gitposh here optiona to diectly open folder
+- Chocolatey  - (optional) used to install other packages using  choco install poshgit
+- create a folder to project
+	* create package.json file within the folder using  
+			 ---------------------> npm init
+	* Open project folder using vscode
+- Need to install babel-cli and babel-preset-es2015
+		* babel-cli  can be used compile files from command line 
+		* babel-preset-es2015  - to use new syntax without waiting for updated browser.
+		
+		
+			----------------------> npm install babel-cli babel-preset-es2015
+			
+- Create .babelrc configuration file and enable some plugins	
+			and 
+			{
+				"presets":[
+					"es2015"
+				]
+			}
+		
+
+- In package.json write commands to compile our es2015code to js code
+		"scripts" : {
+			"build" : "babel src -d dist"
+		},
+		"script" : {
+			"build" : babel --preset es2015 src - dist
+		}
+		
+		To compile from the command line ----------> npm run build
+
+		
+let		
+-----		
+- var always create one scope but let creates separate scope so
+	function testVar()
+	{
+		var a = 30;
+		if(true)
+			{
+				var a = 50;
+				console.log(a);
+			}
+		console.log(a);
+	}
+	testVar();   // Output is  50 50
+
+	function testLet()
+	{
+		let a = 30;
+		if(true){
+			let a = 50;
+			console.log(a);
+		}
+		console.log(a);
+	}
+	testLet();  //Output is 50 30
+	
+	It is same for for loop too
+	
+	for(var i=0;i<10;i++)
+    {
+        console.log(i)
+    }
+	console.log(i)   // Output is 1 to 9 for for loop and 10 for outer i
+
+	for(let i=0;i<10;i++)
+    {
+        console.log(i)
+    }
+    console.log(i); // Output is 1 to 9 for for loop and variable not defined error for outer i
+	
+	
+const
+---------	
+const colors = [];
+
+colors.push('red');
+colors.push('green');
+
+console.log(colors);
+
+
+Classes & Inheritance
+----------------------
+
+class User{
+    constructor(username, email, password)
+    {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    static countUsers()
+    {
+        console.log("there are 50 users");
+    }
+
+    register()
+    {
+        console.log(this.username + " is now registered");
+    }
+}
+
+//let bob = new User("bob", "bob@test.com", "12345");
+//bob.register();
+//User.countUsers();
+
+class Member extends User{
+    constructor(username, email, password, memberPackage)
+    {
+        super(username, email, password);
+        this.memberPackage = memberPackage;
+    }
+
+    getPackage()
+    {
+        console.log(this.username + " is subscribed to get " + this.memberPackage + "package");
+    }
+}
+
+let user = new Member("newman", "newman@gmail.com", "12345","stabdard");
+user.getPackage();
+user.register();
+
+
+Template Literals
+--------------------
+/*let template = "<h1>Hello</h1>" +
+ "<p> This is a template in Javascript</p>";*/
+ let name = "Newman";
+ function makeUppercase(word)
+ {
+     return word.toUpperCase();
+ }
+let template = `<h1>${makeUppercase('Hello')} ${name}</h1>
+ <p> This is a template in Javascript</p>`;
+document.getElementById("template").innerHTML = template;
+
+
+String and Number Methods
+----------------------------
+let theString ="Hello, my name is Brad";
+//startsWith()
+//endsWith()
+//includes()
+console.log(theString.includes("name"));
+
+//Number methods
+//Hex
+console.log(0xFF);
+//Binary
+console.log(0b101011);
+//Octal
+console.log(0o543);
+
+console.log(Number.isFinite(3));
+console.log(Number.isFinite(Infinity));
+console.log(Number.isFinite(NaN));
+console.log(Number.isNaN(NaN));
+console.log(Number.isNaN(100));
+console.log(Number.isInteger(100));
+
+Default param 
+--------------
+
+function greet($greeting = 'Hello world')
+{
+    console.log($greeting);
+}
+
+//greet("Hello");
+greet();
+greet("Hello");
+
+
+Spread operator
+---------------
+let args1 = [1,2,3];
+let args2 = [4,5,6];
+
+function test()
+{
+    console.log(args1 + ',' + args2);
+}
+
+//test();
+//test.apply(null, args);
+test(...args1, ...args2);
+
+
+Set, Map, WeakSet and WeakMap
+-----------------------------
+
+Set :
+-A Set is a collection of values, where each value may occur only once
+-return unique value any time for number, object or string from an array
+-Set can store any values
+-Method are add, delete, has, clear and size.
+
+let myArray =[11,22,34, 65,34];
+
+let mySet = new Set(myArray);
+
+console.log(mySet);
+mySet.add(100);
+mySet.add("Any String");
+console.log(mySet);
+
+mySet.add({a:100, b:200});
+console.log(mySet);
+
+mySet.delete(22);
+console.log(mySet);
+
+//mySet.clear();
+//console.log(mySet);
+
+mySet.add(1000);
+console.log(mySet);
+
+console.log(mySet.size);
+
+mySet.forEach(x => {
+    console.log(x);
+})
+
+Map:
+Key-Value pair that we can add(set), delete
+
+let myMap = new Map([['a1', 'Hello'], ['b2', 'GoodBye']]);
+console.log(myMap);
+myMap.set('c3', 'foo');
+console.log(myMap);
+
+myMap.delete('a1');
+console.log(myMap);
+console.log(myMap.size);
+
+
+WeakSet :
+-Can store only collections
+-Can carbage collect if no reference to the object in WeakMap
+- No Clear, no size method on WeakMap
+- WeakSet does not have clear, keys, values, entries, forEach methods
+
+let carWeakSet = new WeakSet();
+
+let car1 = {
+    make : 'Honda',
+    model : 'Civic'
+}
+
+carWeakSet.add(car1);
+let car2 = {
+    make : 'Toyota',
+    model : 'Camry'
+}
+carWeakSet.add(car2);
+
+console.log(carWeakSet);
+
+carWeakSet.delete(car1);
+console.log(carWeakSet);
+
+WeakMap:
+- Key-value pair but key and value are two separate objects
+
+let carWeakMap = new WeakMap();
+
+let car1 = {
+    make : 'Honda',
+    model : 'Civic'
+}
+
+let key1 ={
+    id:1
+}
+
+carWeakMap.set(key1, car1);
+
+let car2 = {
+    make : 'Toyota',
+    model : 'Camry'
+}
+
+let key2 ={
+    id:2
+}
+carWeakMap.set(key2, car2);
+
+carWeakMap.delete(key1);
+console.log(carWeakMap);
+
+
+Arrow Functions
+---------------			
+Prototype : is extension of a function
+
+function Prefixer(prefix)
+{
+    this.prefix = prefix;
+}
+
+Prefixer.prototype.prefixArray = function(arr){
+    let that = this;
+    return arr.map(function(x){
+        console.log(that.prefix + x)
+    });
+}
+
+let pre = new Prefixer('Hello ');
+pre.prefixArray(['Newman', 'Croos']);
+
+
+Implement Arrow function :
+--------------------------
+
+function Prefixer(prefix)
+{
+    this.prefix = prefix;
+}
+
+Prefixer.prototype.prefixArray = function(arr){
+	/////// without using Arrow function we need to copy the instance to separate variable but with Arrow function
+	/////// we can use main instance
+    //let that = this;
+    // return arr.map(function(x){
+    //     console.log(that.prefix + x)
+	
+        return arr.map(x => {
+        console.log(this.prefix + x)
+    });
+}
+
+let pre = new Prefixer('Hello ');
+pre.prefixArray(['Newman', 'Croos']);
+
+------
+
+// let add = function(a,b)
+// {
+//     let sum = a + b;
+//     console.log(sum);
+//     return false;
+// }
+let add = (a,b) =>
+{
+    let sum = a + b;
+    console.log(sum);
+    return false;
+}
+add(1,2);
+
+-------------------------------------------
+Promises:
+
+Single Promise :
+
+'use strict'
+let myPromise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve('Good to go');
+    },1000);
+    
+    setTimeout(()=>{
+        reject('Something wrong');
+    });
+});
+
+/*myPromise.then((res)=>{
+    console.log(res);
+},(err)=>{
+    console.log(err);
+});*/
+
+myPromise.then((res)=>{
+    console.log(res);
+})
+.catch((err)=>{
+    console.log(err);
+});
+
+
+Multiple Promises :
+
+'use strict'
+let myPromise = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve('Good to go');
+    },1000);
+});
+
+let myPromise2 = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        reject('error:Promise 2 - the promising');
+    },1500);
+});
+
+//If one of the promise get rejected then result will be rejected
+// If all the promises got resolved then dta return all promise data
+Promise.all([myPromise, myPromise2])
+.then((data)=>{
+    console.log(data);
+})
+.catch((err)=>{
+console.log(err);
+
+})
+
+Service Call:
+'use strict'
+fetch('http://api.icndb.com/jokes/random/10')
+.then((res)=>{
+    res.json().then((data)=>{
+        console.log(data);
+    });
+})
+.catch((err)=>{
+    console.log(err);
+})
+
+
+
+

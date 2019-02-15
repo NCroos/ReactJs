@@ -1,0 +1,21 @@
+Npm, Yarn  - Package Manager
+Grunt, gulp, Bower - build tools
+
+Babel and webpack
+
+https://github.com/coryhouse/react-slingshot      *****
+https://facebook.github.io/react/docs/installation.html
+https://yarnpkg.com/en/docs/getting-started
+http://2ality.com/2015/08/getting-started-es6.html
+
+https://www.codeschool.com/courses/es2015-the-shape-of-javascript-to-come
+
+----------------------------------------
+
+VueJs
+------
+
+
+	- Back End 
+			* PHP
+			*  Laravel PHP framework

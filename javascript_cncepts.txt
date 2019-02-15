@@ -1,0 +1,104 @@
+Maps
+-----
+
+var tasks =[
+  {
+      'name' : 'Task 1',
+      'duration' : 120
+  },
+  {
+      'name' : 'Task 2',
+      'duration' : 100
+  },
+  {
+      'name' : 'Task 3',
+      'duration' : 110
+  },
+  {
+      'name' : 'Task 4',
+      'duration' : 140
+  },
+  {
+      'name' : 'Task 5',
+      'duration' : 102
+  }
+];
+
+var task_names = [];
+ 
+/*for (var i = 0, max = tasks.length; i < max; i += 1) {
+ 
+    task_names.push(tasks[i].name);
+ }*/
+
+
+/*tasks.forEach(x => {
+  task_names.push(x.name);
+});*/
+
+/*tasks.map(function(task, index, ttasks){
+  task_names.push(task.name);
+});*/
+
+/*task_namest = tasks.map(x => {
+  return x.name;
+})*/
+
+task_namest = tasks.map(x => x.name);
+console.log(task_namest);
+
+
+
+Filters
+--------
+var tasks =[
+  {
+      'name' : 'Task 1',
+      'duration' : 120
+  },
+  {
+      'name' : 'Task 2',
+      'duration' : 100
+  },
+  {
+      'name' : 'Task 3',
+      'duration' : 110
+  },
+  {
+      'name' : 'Task 4',
+      'duration' : 140
+  },
+  {
+      'name' : 'Task 5',
+      'duration' : 102
+  },
+  {
+      'name' : 'Task 6',
+      'duration' : 10
+  }
+];
+
+
+var taskst = tasks.filter(x => x.duration >100 || x.duration ==100);
+
+console.log(taskst);
+
+
+Reduce
+-------
+var number = [1,2,3,4,5,6,7,8,9];
+
+var total = number.reduce(function (previous, current){
+  return previous + current
+
+},0)
+
+console.log(total);
+
+var array_of_arrays = [[1, 2], [3, 4], [5, 6]];
+var concatenated = array_of_arrays.reduce( function (previous, current) {
+        return previous.concat(current);
+});
+ 
+console.log(concatenated);
+

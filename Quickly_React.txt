@@ -1,0 +1,33 @@
+map
+---
+var arr = [1, 2, 3, 4, 5];
+var arr2 = arr.map(value => value * 2);
+
+reduce
+------  
+Same as map but accept function with previous and current element as parameter
+````````````````````````````````````````
+var number = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+var total = number.reduce(function(previous, current) {
+    return previous + current;
+  });
+`````````````````````````````````````````````
+  var array_of_arrays = [[1, 2], [3, 4], [5, 6]];
+  var concatenated = array_of_arrays.reduce(function(previous, current) {
+    return previous.concat(current);
+  });
+  
+``````````````````````````````````````````````````  
+var numbers = [65, 44, 12, 4];
+
+function getSum(total, num) {
+    return total + num;
+}
+function myFunction(item) {
+    document.getElementById("demo").innerHTML = numbers.reduce(getSum);
+}  
+------------------------------------------------------------------------------------------------------
+
+Benifits of React
+
